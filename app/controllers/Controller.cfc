@@ -5,7 +5,7 @@
 --->
 <cfcomponent extends="Wheels">
 	
-	<cffunction name="init">
+	<cffunction name="restricted">
 		<cfif !loginCheck()>
 			<cfset flashInsert(msg="Please login first!")>
 			<cfset redirectTo(route="login")>

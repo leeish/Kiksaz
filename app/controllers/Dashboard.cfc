@@ -3,6 +3,7 @@
 	<!--- SET FILTERS, RESPONSE TYPES, CHECKS ETC --->
 	<cffunction name="init">
     	<cfset provides("html,json")>
+		<cfset filters("restricted")>
 		<cfset filters("setup")>
 	</cffunction>
 	
