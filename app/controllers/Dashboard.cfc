@@ -26,12 +26,12 @@
 			<cfset DirectoryCreate('/app/users/uploaded/')>
 			<cfif !directoryExists('/app/users/uploaded/')>
 				<cfset flashInsert(error="There was a problem saving the file. The required directory could not be created")>
-				<cfset redirectTo(route="home")>
+				<cfset redirectTo(action="index")>
 			</cfif>
 		</cfif>
 		<cfset stamp = dateFormat(now(),'mmddyy')&timeformat(now(),'HHmmss')>
 		<cffile action="upload" destination="/app/users/uploaded/1_1_#stamp#.jpg" fileField="receipt">
-		<cfset redirectTo(route="home")>
+		<cfset redirectTo(action="index")>
 	</cffunction>
 	
 	<cffunction name="processReceipt">
