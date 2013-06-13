@@ -17,7 +17,7 @@
 		<cfparam name="params.password" default=""/>
 		<cfif params.UserName == 'projectkiksaz' && params.password == 'ablb1210'>
 			<cfset SESSION.user.loggedin = true/>
-			<cfset redirectTo(route="home")>
+			<cfset redirectTo(controller="dashboard", action="home")>
 		</cfif>
 		<cfset flashInsert(error="Login Invalid")>
 		<cfset renderPage(action="login")>
