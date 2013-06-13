@@ -31,7 +31,7 @@
 		</cfif>
 		<cfset stamp = dateFormat(now(),'mmddyy')&timeformat(now(),'HHmmss')>
 		<cffile action="upload" destination="/app/users/uploaded/1_1_#stamp#.jpg" fileField="receipt">
-		<cfset redirectTo(route="login")>
+		<cfset redirectTo(route="home")>
 	</cffunction>
 	
 	<cffunction name="processReceipt">
