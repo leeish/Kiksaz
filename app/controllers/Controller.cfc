@@ -4,4 +4,11 @@
 	Do not delete this file.
 --->
 <cfcomponent extends="Wheels">
+	
+	<cffunction name="init">
+		<cfif !loginCheck()>
+			<cfset flashInsert(msg="Please login first!")>
+			<cfset redirectTo(route="login")>
+		</cfif>
+	</cffunction>
 </cfcomponent>

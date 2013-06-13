@@ -3,14 +3,10 @@
 	<!--- SET FILTERS, RESPONSE TYPES, CHECKS ETC --->
 	<cffunction name="init">
     	<cfset provides("html,json")>
-		<cfset filters("restrictAccess")>
+		<cfset filters("setup")>
 	</cffunction>
 	
-	<cffunction name="restrictAccess">
-		<cfif !loginCheck()>
-			<cfset flashInsert(msg="Please login first!")>
-			<cfset redirectTo(route="login")>
-		</cfif>
+	<cffunction name="setup">
 		<cfset images = directoryList(path="/app/users/uploaded/",listInfo="query")>
 		<cfset omnis = directoryList(path="/app/users/processed/",listInfo="query")>
 	</cffunction>
