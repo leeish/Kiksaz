@@ -11,6 +11,12 @@
 			<cfset flashInsert(msg="Please login first!")>
 			<cfset redirectTo(route="login")>
 		</cfif>
+		<cfset images = directoryList(path="/app/users/uploads/",listInfo="query")>
+		<cfset omnis = directoryList(path="/app/users/processed/",listInfo="query")>
+	</cffunction>
+	
+	<cffunction name="index">
+		
 	</cffunction>
 	
 	<cffunction name="submitReceipt">
@@ -19,14 +25,25 @@
 			<cfset flashInsert(error="You must submit something for processing")>
 			<cfset redirectTo(action='index')>
 		</cfif>
-		<!---><cffile action="upload" destination="/Kiksaz/testFiles/text.txt" fileField="receipt" result="file" nameConflict="Overwrite">--->
-		<cffile action="read" file="/Kiksaz/testFiles/text.txt" variable="text" charset="us-ascii">
-		<cfset writeoutput(text)>
-		<cfset upcs = findUPCFromText(text)>
-		<cfset renderPage(action='index')>
+		<cfif !directoryExists('/app/users/uploads/')>
+			<cfset DirectoryCreate('/app/users/uploads/')>
+			<cfif !directoryExists('/app/users/uploads/')>
+				<cfset flashInsert(error="There was a problem saving the file. The required directory could not be created")>
+				<cfset redirectTo(route="home")>
+			</cfif>
+		</cfif>
+		<cfset stamp = dateFormat(now(),'mmddyy')&timeformat(now(),'HHmmss')>
+		<cffile action="upload" destination="/app/users/uploads/1_1_#stamp#.jpg" fileField="receipt">
+		<cfset redirectTo(route="login")>
 	</cffunction>
 	
-	<cffunction name="findUPCFromText" returntype="struct">
+	<cffunction name="processReceipt">
+		<cffile action="read" file="/app/users/processed/#params.key#" variable="text">
+		<cfset upcs = findUPCFromText(text)>
+		<cfset renderPage(action="index")>
+	</cffunction>
+	
+	<cffunction name="findUPCFromText" returntype="array">
 		<cfargument name="text" required="yes" type="string">
 		<cfargument name="store" required="yes" type="string" default="Wal-mart">
 		<cfswitch expression="#store#">
@@ -39,11 +56,9 @@
 		</cfswitch>
 	</cffunction>
 	
-	<cffunction name="processWalMartReceipt" returntype="struct">
+	<cffunction name="processWalMartReceipt" returntype="array">
 		<cfargument name="text" required="yes" type="string">
-		<cfdump var="#ARGUMENTS.text#">
 		<cfset var upcs = preg_match_all('(?m)^([^\n\f\r]*?)\s+(\d{12})(?=\D|$)',ARGUMENTS.text)>
-		<cfdump var="#upcs#"><cfabort/>
-		
+		<cfreturn upcs>
 	</cffunction>
 </cfcomponent>
