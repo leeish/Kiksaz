@@ -13,7 +13,7 @@
 <cfoutput query="images">
 	<tr>
 		<td>#directory#</td>
-		<td>#name#</td>
+		<td>#linkTo(text=name, href='/app/users/uploaded/'&name)#</td>
 	</tr>
 </cfoutput>
 </table>
