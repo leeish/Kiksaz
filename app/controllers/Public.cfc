@@ -3,7 +3,6 @@
 	<!--- SET FILTERS, RESPONSE TYPES, CHECKS ETC --->
 	<cffunction name="init">
     	<cfset provides("html,json")>
-		<cfset filters("checkLogin")>
 	</cffunction>
 	
 	<cffunction name="tryLogin">
