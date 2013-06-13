@@ -11,4 +11,5 @@
 			<cfset redirectTo(route="login")>
 		</cfif>
 	</cffunction>
+	
 </cfcomponent>
