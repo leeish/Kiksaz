@@ -11,7 +11,7 @@
 			<cfset flashInsert(msg="Please login first!")>
 			<cfset redirectTo(route="login")>
 		</cfif>
-		<cfset images = directoryList(path="/app/users/uploads/",listInfo="query")>
+		<cfset images = directoryList(path="/app/users/uploaded/",listInfo="query")>
 		<cfset omnis = directoryList(path="/app/users/processed/",listInfo="query")>
 	</cffunction>
 	
@@ -25,15 +25,15 @@
 			<cfset flashInsert(error="You must submit something for processing")>
 			<cfset redirectTo(action='index')>
 		</cfif>
-		<cfif !directoryExists('/app/users/uploads/')>
-			<cfset DirectoryCreate('/app/users/uploads/')>
-			<cfif !directoryExists('/app/users/uploads/')>
+		<cfif !directoryExists('/app/users/uploaded/')>
+			<cfset DirectoryCreate('/app/users/uploaded/')>
+			<cfif !directoryExists('/app/users/uploaded/')>
 				<cfset flashInsert(error="There was a problem saving the file. The required directory could not be created")>
 				<cfset redirectTo(route="home")>
 			</cfif>
 		</cfif>
 		<cfset stamp = dateFormat(now(),'mmddyy')&timeformat(now(),'HHmmss')>
-		<cffile action="upload" destination="/app/users/uploads/1_1_#stamp#.jpg" fileField="receipt">
+		<cffile action="upload" destination="/app/users/uploaded/1_1_#stamp#.jpg" fileField="receipt">
 		<cfset redirectTo(route="login")>
 	</cffunction>
 	
