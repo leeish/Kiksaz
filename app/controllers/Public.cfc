@@ -3,6 +3,9 @@
 	<!--- SET FILTERS, RESPONSE TYPES, CHECKS ETC --->
 	<cffunction name="init">
     	<cfset provides("html,json")>
+		<cfif loginCheck()>
+			<cfset redirectTo(controller="dashboard", action="index")>
+		</cfif>
 	</cffunction>
 	
 	<cffunction name="tryLogin">
@@ -10,7 +13,7 @@
 		<cfparam name="params.password" default=""/>
 		<cfif params.UserName == 'projectkiksaz' && params.password == 'ablb1210'>
 			<cfset SESSION.user.loggedin = true/>
-			<cfset redirectTo(controller="dashboard")>
+			<cfset redirectTo(controller="dashboard",action="index")>
 		</cfif>
 		<cfset flashInsert(error="Login Invalid")>
 		<cfset renderPage(action="login")>
