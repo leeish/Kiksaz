@@ -17,7 +17,6 @@ $(window).bind('readyfblogin',function() {
     	  	// login status of the person. In this case, we're handling the situation where they 
     	  	// have logged in to the app.
     	  	loginUser(accessToken,userID);
-    	  	$('.app-logout').show();
     	} else if (response.status === 'not_authorized') {
     	 	// In this case, the person is logged into Facebook, but not into the app, so we call
     	  	// FB.login() to prompt them to do so. 
@@ -52,7 +51,7 @@ function loginUser(accessToken,userID) {
 				alert('Login Error. TODO: Handle This');
 			}
 			if(data.status=="success"){
-				window.location = '#URLFor(route="home")#';
+				window.location = '#URLFor(controller="dashboard",action="index")#';
 			}
 		},
 		'json'
