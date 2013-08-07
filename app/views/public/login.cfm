@@ -42,7 +42,7 @@ $(window).bind('readyfblogin',function() {
 // This testAPI() function is only called in those cases. 
 function loginUser(accessToken,userID) {
 	console.log('Welcome!  Fetching your information.... ');
-	$.post('#URLFor(action="tryLogin")#&format=json',
+	$.post('#URLFor(action="tryLogin",params="format=json")#',
 		{
 			user: userID,
 			token: accessToken
