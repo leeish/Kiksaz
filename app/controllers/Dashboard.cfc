@@ -12,6 +12,11 @@
 		<cfset omnis = directoryList(path="/app/users/processed/",listInfo="query")>
 	</cffunction>
 	
+	<cffunction name="logout">
+		<cfset StructClear(SESSION)>
+		<cfset redirectTo(route="login",message="Logged Out")>
+	</cffunction>
+	
 	<cffunction name="index">
 		
 	</cffunction>

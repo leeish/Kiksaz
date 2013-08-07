@@ -3,6 +3,7 @@
 		#fileFieldTag(label="Upload Receipt", name="receipt")#
 		#submitTag(value="Submit")#
 	#endFormTag()#
+	#linkTo(href="javascript:",text="Log Out of Snap Bought",onClick="logOutApp()")#
 </cfoutput>
 <h2>Uploaded Files</h2>
 <table>
@@ -35,3 +36,13 @@
 	<cfdump var="#text#">
 	<cfdump var="#upcs#">
 </cfif>
+<cfoutput>
+	<script type="text/javascript">
+		function logOutApp(){
+			FB.logout(function(response){
+				//Logged Out
+				window.location = '#URLFor(action="logout")#';
+			});
+		}
+	</script>
+</cfoutput>

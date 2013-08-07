@@ -5,6 +5,26 @@
 		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js"></script>
 		<cfoutput>
+			<script type="text/javascript">
+				window.fbAsyncInit = function() {
+					FB.init({
+				      	appId      : '518734988197681', // App ID
+				      	channelUrl : '#APPLICATION.wheels.webpath#channel.html', // Channel File
+				      	status     : true, // check login status
+				    	cookie     : true, // enable cookies to allow the server to access the session
+				    	xfbml      : true  // parse XFBML
+					});
+					$(window).trigger('readyfblogin');
+			    };
+			    // Load the SDK asynchronously
+				(function(d){
+					var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+				    if (d.getElementById(id)) {return;}
+				    js = d.createElement('script'); js.id = id; js.async = true;
+				    js.src = "//connect.facebook.net/en_US/all.js";
+				    ref.parentNode.insertBefore(js, ref);
+				}(document));
+			</script>
 			#styleSheetLinkTag('main')#
 		</cfoutput>
 	</head>
