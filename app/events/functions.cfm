@@ -28,3 +28,18 @@
 	</cfloop>
 	<cfreturn results>
 </cffunction>
+
+<cffunction name="sessionSetup">
+	<cfargument name="userid" type="string" required="yes">
+	<cfargument name="externalsource" type="string" required="yes">
+	<cftry>
+	<cfset SESSION.user = {}>
+	<cfset SESSION.user.userID = arguments.userid>
+	<cfset SESSION.user.type = arguments.externalsource>
+	<cfset SESSION.user.loggedIn = true>
+	<cfcatch>
+		<cfreturn false>
+	</cfcatch>
+		<cfreturn true>
+	</cftry>
+</cffunction>

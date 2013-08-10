@@ -6,9 +6,10 @@
 		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js"></script>
 		<cfoutput>
 			<script type="text/javascript">
+				var appId = '#(get("environment")=="production")?"518734988197681":"702130816471169"#';
 				window.fbAsyncInit = function() {
 					FB.init({
-				      	appId      : '518734988197681', // App ID
+				      	appId      : appId, // App ID
 				      	channelUrl : '#APPLICATION.wheels.webpath#channel.html', // Channel File
 				      	status     : true, // check login status
 				    	cookie     : true, // enable cookies to allow the server to access the session

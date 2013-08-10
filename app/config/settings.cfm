@@ -1,8 +1,8 @@
 
 	If you leave these settings commented out, Wheels will set the data source name to the same name as the folder the application resides in.
 	<cfset set(dataSourceName="amazon")>
-	<cfset set(dataSourceUserName="projectkiksaz")>
-	<cfset set(dataSourcePassword="ablb1210")> 
+	<cfset set(showErrorInformation="true")>
+	<cfset set(showDebugInformation="true")>
 
 
 <!---

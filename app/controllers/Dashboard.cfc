@@ -38,29 +38,4 @@
 		<cffile action="upload" destination="/app/users/uploaded/1_1_#stamp#.jpg" fileField="receipt">
 		<cfset redirectTo(action="index")>
 	</cffunction>
-	
-	<cffunction name="processReceipt">
-		<cffile action="read" file="/app/users/processed/#params.key#" variable="text">
-		<cfset upcs = findUPCFromText(text)>
-		<cfset renderPage(action="index")>
-	</cffunction>
-	
-	<cffunction name="findUPCFromText" returntype="array">
-		<cfargument name="text" required="yes" type="string">
-		<cfargument name="store" required="yes" type="string" default="Wal-mart">
-		<cfswitch expression="#store#">
-			<cfcase value="Wal-mart">
-				<cfreturn processWalMartReceipt(ARGUMENTS.text) />
-			</cfcase>
-			<cfdefaultcase>
-				<cfreturn {"upc" = ARGUMENTS.text}>
-			</cfdefaultcase>
-		</cfswitch>
-	</cffunction>
-	
-	<cffunction name="processWalMartReceipt" returntype="array">
-		<cfargument name="text" required="yes" type="string">
-		<cfset var upcs = preg_match_all('(?m)^([^\n\f\r]*?)\s+(\d{12})(?=\D|$)',ARGUMENTS.text)>
-		<cfreturn upcs>
-	</cffunction>
 </cfcomponent>
