@@ -25,6 +25,11 @@
 				    js.src = "//connect.facebook.net/en_US/all.js";
 				    ref.parentNode.insertBefore(js, ref);
 				}(document));
+				function logOutApp(){
+					FB.logout(function(response){
+						window.location = '#URLFor(action="logout")#';
+					});
+				}
 			</script>
 			#styleSheetLinkTag('main')#
 		</cfoutput>

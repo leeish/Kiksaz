@@ -5,7 +5,11 @@ $(document).ready(function(){
 	$('##login').click(function() {
 		FB.getLoginStatus(function(response){
 			if(response.status !== 'connected'){
-				FB.login();
+				FB.login(function(response){
+					if(response.status === 'connected'){
+						loginUser(response.authResponse.accessToken,response.authResponse.userID);
+					}
+				});
 			} else {
 				loginUser(response.authResponse.accessToken,response.authResponse.userID);
 			}
