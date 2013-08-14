@@ -18,7 +18,7 @@
 	</cffunction>
 	
 	<cffunction name="index">
-		
+		<cfset transactions = model('Transaction').findAll(WHERE="userid = #SESSION.user.userid#")>
 	</cffunction>
 	
 	<cffunction name="submitReceipt">

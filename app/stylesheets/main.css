@@ -11,3 +11,11 @@
 	padding: 15px 30px;
 	border-radius: 3px;
 }
+.successMessage{
+	border: solid 2px #2076ce;
+	background: #4096ee;
+	text-shadow: 0 1px 0 #2076ce;
+	color: #fff;
+	padding: 15px 30px;
+	border-radius: 3px;
+}

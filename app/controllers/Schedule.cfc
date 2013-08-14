@@ -16,7 +16,10 @@
 				<cftry>
 				<cfset transaction = model('Transaction').findByKey(Left(name,1))>
 				<cffile action="read" file="/app/users/processed/#name#" variable="text">
-				<cfset transaction.receipt = text>
+				<cfset leftScore = Find('_',name)+1> <!--- Distance to First Underscore --->
+				<cfset partLength = Find('_',name,leftScore)-leftScore> <!--- Number of Digits in Part --->
+				<cfset part = MID(name,leftScore,partLength) />
+				<cfset transaction.receipt = transaction.receipt&' '&text>
 				<cfset transaction.save()>
 				<cfset part = model('TransactionPart').new()>
 				<cfset part.transactionid = transaction.transactionid>
